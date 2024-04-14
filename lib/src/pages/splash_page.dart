@@ -5,7 +5,7 @@ import 'package:flutter_healthcare_app/src/theme/text_styles.dart';
 import 'package:flutter_healthcare_app/src/theme/extention.dart';
 
 class SplashPage extends StatefulWidget {
-  SplashPage({Key key}) : super(key: key);
+  SplashPage({Key? key}) : super(key: key);
 
   @override
   _SplashPageState createState() => _SplashPageState();
@@ -14,11 +14,13 @@ class SplashPage extends StatefulWidget {
 class _SplashPageState extends State<SplashPage> {
   @override
   void initState() {
-     Future.delayed(Duration(seconds: 2)).then((_) {
-      Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => HomePage()));
+    Future.delayed(Duration(seconds: 2)).then((_) {
+      Navigator.pushReplacement(
+          context, MaterialPageRoute(builder: (_) => HomePage()));
     });
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,29 +49,33 @@ class _SplashPageState extends State<SplashPage> {
               ),
             ),
           ),
-         Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget>[
-                Expanded(
-                  flex: 2,
-                  child: SizedBox(),
-                ),
-                Image.asset("assets/heartbeat.png", color: Colors.white,height: 100,),
-                Text(
-                  "Time Health",
-                  style: TextStyles.h1Style.white,
-                ),
-                Text(
-                  "By healthcare Evolution",
-                  style: TextStyles.bodySm.white.bold,
-                ),
-                Expanded(
-                  flex: 7,
-                  child: SizedBox(),
-                ),
-              ],
-            ).alignTopCenter,
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              Expanded(
+                flex: 2,
+                child: SizedBox(),
+              ),
+              Image.asset(
+                "assets/heartbeat.png",
+                color: Colors.white,
+                height: 100,
+              ),
+              Text(
+                "Time Health",
+                style: TextStyles.h1Style.white,
+              ),
+              Text(
+                "By healthcare Evolution",
+                style: TextStyles.bodySm.white.bold,
+              ),
+              Expanded(
+                flex: 7,
+                child: SizedBox(),
+              ),
+            ],
+          ).alignTopCenter,
         ],
       ),
     );

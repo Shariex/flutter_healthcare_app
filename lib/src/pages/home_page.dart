@@ -9,20 +9,21 @@ import 'package:flutter_healthcare_app/src/theme/text_styles.dart';
 import 'package:flutter_healthcare_app/src/theme/theme.dart';
 
 class HomePage extends StatefulWidget {
-  HomePage({Key key}) : super(key: key);
+  HomePage({Key? key}) : super(key: key);
 
   @override
   _HomePageState createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
-  List<DoctorModel> doctorDataList;
+  late List<DoctorModel> doctorDataList;
   @override
-  void initState() { 
-    doctorDataList = doctorMapList.map((x)=> DoctorModel.fromJson(x)).toList();
+  void initState() {
+    doctorDataList = doctorMapList.map((x) => DoctorModel.fromJson(x)).toList();
     super.initState();
   }
-  Widget _appBar() {
+
+  AppBar _appBar() {
     return AppBar(
       elevation: 0,
       backgroundColor: Theme.of(context).backgroundColor,
@@ -130,13 +131,14 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Widget _categoryCard(String title, String subtitle,{Color color, Color lightColor}) {
-     TextStyle titleStyle = TextStyles.title.bold.white;
-     TextStyle subtitleStyle = TextStyles.body.bold.white;
-     if(AppTheme.fullWidth(context) < 392){
-       titleStyle = TextStyles.body.bold.white;
-       subtitleStyle = TextStyles.bodySm.bold.white;
-     }
+  Widget _categoryCard(String title, String subtitle,
+      {required Color color, required Color lightColor}) {
+    TextStyle titleStyle = TextStyles.title.bold.white;
+    TextStyle subtitleStyle = TextStyles.body.bold.white;
+    if (AppTheme.fullWidth(context) < 392) {
+      titleStyle = TextStyles.body.bold.white;
+      subtitleStyle = TextStyles.bodySm.bold.white;
+    }
     return AspectRatio(
       aspectRatio: 6 / 8,
       child: Container(
@@ -171,10 +173,7 @@ class _HomePageState extends State<HomePage> {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: <Widget>[
                     Flexible(
-                      child: Text(
-                        title,
-                        style: titleStyle
-                      ).hP8,
+                      child: Text(title, style: titleStyle).hP8,
                     ),
                     SizedBox(
                       height: 10,
@@ -213,19 +212,18 @@ class _HomePageState extends State<HomePage> {
             ],
           ).hP16,
           getdoctorWidgetList()
-          
-          
         ],
       ),
     );
   }
-  Widget getdoctorWidgetList(){
-     return Column(
-       children: doctorDataList.map((x){
-            return  _doctorTile(x);
-          }).toList()
-     );
+
+  Widget getdoctorWidgetList() {
+    return Column(
+        children: doctorDataList.map((x) {
+      return _doctorTile(x);
+    }).toList());
   }
+
   Widget _doctorTile(DoctorModel model) {
     return Container(
       margin: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
@@ -268,7 +266,7 @@ class _HomePageState extends State<HomePage> {
           ),
           title: Text(model.name, style: TextStyles.title.bold),
           subtitle: Text(
-           model.type,
+            model.type,
             style: TextStyles.bodySm.subTitleColor.bold,
           ),
           trailing: Icon(
